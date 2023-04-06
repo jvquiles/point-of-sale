@@ -32,6 +32,14 @@ namespace POS.Tests
             var price = pointOfSale.Scan("23456");
             price.Should().Be("$12.50");
         }
+
+        [Test]
+        public void Scan99999Barcode()
+        {
+            var pointOfSale = new PointOfSale();
+            var price = pointOfSale.Scan("99999");
+            price.Should().Be("Error: barcode not found");
+        }
     }
 
     public class PointOfSale
@@ -46,6 +54,11 @@ namespace POS.Tests
             if (code == "23456")
             {
                 return "$12.50";
+            }
+
+            if (code == "99999")
+            {
+                return "Error: barcode not found";
             }
 
             return "Error: empty barcode";
