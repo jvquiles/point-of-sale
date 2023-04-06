@@ -44,24 +44,30 @@ namespace POS.Tests
 
     public class PointOfSale
     {
+        private readonly Dictionary<string, string> _codes;
+
+        public PointOfSale()
+        {
+            _codes = new()
+            {
+                {"12345", "$7.25"},
+                {"23456", "$12.50"}
+            };
+        }
+
         public string Scan(string code)
         {
-            if (code == "12345")
+            if (string.IsNullOrEmpty(code))
             {
-                return "$7.25";
+                return "Error: empty barcode";
             }
 
-            if (code == "23456")
+            if (_codes.TryGetValue(code, out var response))
             {
-                return "$12.50";
+                return response;
             }
 
-            if (code == "99999")
-            {
-                return "Error: barcode not found";
-            }
-
-            return "Error: empty barcode";
+            return "Error: barcode not found";
         }
     }
 }
