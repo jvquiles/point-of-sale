@@ -40,6 +40,13 @@ namespace POS.Tests
             var price = pointOfSale.Scan("99999");
             price.Should().Be("Error: barcode not found");
         }
+
+        [Test]
+        public void CalculateTotalOf12345And23456()
+        {
+            var pointOfSale = new PointOfSale();
+            var price = pointOfSale.Total("12345", "23456");
+        }
     }
 
     public class PointOfSale
@@ -68,6 +75,11 @@ namespace POS.Tests
             }
 
             return "Error: barcode not found";
+        }
+
+        public string Total(params string[] codes)
+        {
+            throw new NotImplementedException();
         }
     }
 }
