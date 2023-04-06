@@ -1,3 +1,5 @@
+using FluentAssertions;
+
 namespace POS.Tests
 {
     public class PointOfSaleShould
@@ -8,9 +10,19 @@ namespace POS.Tests
         }
 
         [Test]
-        public void Test1()
+        public void Scan12345Barcode()
         {
-            Assert.Pass();
+            var pointOfSale = new PointOfSale();
+            var price = pointOfSale.Scan("");
+            price.Should().Be("Error: empty barcode");
+        }
+    }
+
+    public class PointOfSale
+    {
+        public object Scan(string s)
+        {
+            throw new NotImplementedException();
         }
     }
 }
