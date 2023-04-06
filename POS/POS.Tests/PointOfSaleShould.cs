@@ -30,6 +30,11 @@ namespace POS.Tests
     {
         public string Scan(string code)
         {
+            if (code == "12345")
+            {
+                return "$7.25";
+            }
+
             return "Error: empty barcode";
         }
     }
