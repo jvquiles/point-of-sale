@@ -46,6 +46,7 @@ namespace POS.Tests
         {
             var pointOfSale = new PointOfSale();
             var price = pointOfSale.Total("12345", "23456");
+            price.Should().Be("$19.75");
         }
     }
 
@@ -69,9 +70,9 @@ namespace POS.Tests
                 return "Error: empty barcode";
             }
 
-            if (_codes.TryGetValue(code, out var response))
+            if (_codes.TryGetValue(code, out var value))
             {
-                return response;
+                return value;
             }
 
             return "Error: barcode not found";
