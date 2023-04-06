@@ -20,9 +20,9 @@ namespace POS.Tests
 
     public class PointOfSale
     {
-        public object Scan(string s)
+        public string Scan(string s)
         {
-            throw new NotImplementedException();
+            return "Error: empty barcode";
         }
     }
 }
