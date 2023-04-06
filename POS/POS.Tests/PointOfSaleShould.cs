@@ -24,6 +24,14 @@ namespace POS.Tests
             var price = pointOfSale.Scan("12345");
             price.Should().Be("$7.25");
         }
+
+        [Test]
+        public void Scan23456Barcode()
+        {
+            var pointOfSale = new PointOfSale();
+            var price = pointOfSale.Scan("23456");
+            price.Should().Be("$12.50");
+        }
     }
 
     public class PointOfSale
