@@ -10,7 +10,7 @@ namespace POS.Tests
         }
 
         [Test]
-        public void Scan12345Barcode()
+        public void ScanEmptyBarcode()
         {
             var pointOfSale = new PointOfSale();
             var price = pointOfSale.Scan("");
