@@ -43,6 +43,11 @@ namespace POS.Tests
                 return "$7.25";
             }
 
+            if (code == "23456")
+            {
+                return "$12.50";
+            }
+
             return "Error: empty barcode";
         }
     }
