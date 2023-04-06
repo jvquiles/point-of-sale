@@ -1,3 +1,4 @@
+using System.Globalization;
 using FluentAssertions;
 
 namespace POS.Tests
@@ -52,14 +53,14 @@ namespace POS.Tests
 
     public class PointOfSale
     {
-        private readonly Dictionary<string, string> _codes;
+        private readonly Dictionary<string, double> _codes;
 
         public PointOfSale()
         {
             _codes = new()
             {
-                {"12345", "$7.25"},
-                {"23456", "$12.50"}
+                {"12345", 7.25},
+                {"23456", 12.50}
             };
         }
 
@@ -72,7 +73,7 @@ namespace POS.Tests
 
             if (_codes.TryGetValue(code, out var value))
             {
-                return value;
+                return $"${value.ToString("N", CultureInfo.InvariantCulture)}";
             }
 
             return "Error: barcode not found";
@@ -80,7 +81,16 @@ namespace POS.Tests
 
         public string Total(params string[] codes)
         {
-            throw new NotImplementedException();
+            var sum = 0d;
+            foreach (var code in codes)
+            {
+                if (_codes.TryGetValue(code, out var value))
+                {
+                    sum += value; ;
+                }
+            }
+
+            return $"${sum.ToString("N", CultureInfo.InvariantCulture)}";
         }
     }
 }
